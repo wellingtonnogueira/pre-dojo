@@ -1,2 +1,12 @@
 Coloque aqui suas instruções ou comentários que ache útil/relevantes para possamos ler 
 quando estivermos avaliando a sua solução
+
+COMENTARIO 1- O ranking será por match que dura 5 minutos
+COMENTÁRIO 2- Antes do fim da rodada (match) um jogador morto pode ressucitar (podendo, assim, ser morto novamente)
+COMENTARIO 3- Deve haver a mesma quantidade de assasinatos e mortes. Ou seja, a soma dos assassinatos de todos os 
+jogadores deve ser igual a soma das mortes de todos os jogadores (incluindo as mortes provocadas pelo <WORLD>).
+COMENTARIO 4- Lista de armas
+- knife, glock, uzi, M16, AK47, AR15, granade
+COMENTARIO 5- lista de Awards
+- Survivor: Não morreu nenhuma vez
+- Killer: Conseguiu matar 5 vezes em um minuto

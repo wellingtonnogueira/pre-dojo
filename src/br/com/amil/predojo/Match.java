@@ -5,6 +5,6 @@ import java.util.List;
 public class Match {
 	
 	long id;
-	List<Personagem> personagens;
+	List<Player> players;
 
 }
