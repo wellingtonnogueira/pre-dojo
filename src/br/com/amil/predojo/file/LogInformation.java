@@ -4,8 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import br.com.amil.predojo.Match;
-
 public abstract class LogInformation {
 
 	private Date occuredTime;

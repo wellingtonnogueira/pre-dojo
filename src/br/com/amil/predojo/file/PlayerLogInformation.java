@@ -36,7 +36,14 @@ public class PlayerLogInformation extends MatchLogInformation {
 		//23/04/2013 15:36:04 - Roman killed Nick using M16
 		String[] playersInfo = log.split(" killed ");
 	
-		setKiller(new Player(playersInfo[0]));
+		String playerName = playersInfo[0];
+		if("<WORLD>".equals(playerName)) {
+			setKiller(new Player(playerName, false));
+			
+		} else {
+			setKiller(new Player(playerName));
+			
+		}
 		
 		
 		String deadPlayer = playersInfo[1].substring(0, playersInfo[1].indexOf(" "));

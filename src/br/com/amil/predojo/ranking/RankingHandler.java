@@ -47,7 +47,7 @@ public class RankingHandler {
 	public void updateRanking(Player killer, Player target, Weapon weapon) {
 		RankingStatistics killerStatistics = ranking.get(killer);
 		
-		if(killer != null) { //if null means the killer was the World
+		if(killer.isRankable()) { //if null means the killer was the World
 			if(killerStatistics == null) {
 				killerStatistics = new RankingStatistics(killer);
 				ranking.put(killer, killerStatistics);
@@ -90,7 +90,9 @@ public class RankingHandler {
 	 */
 	public static class RankingComparator<T extends RankingStatistics> implements Comparator<T> {
 		
-		@Override
+		/* (non-Javadoc)
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 */
 		public int compare(T o1, T o2) {
 			if(o1.getKilled() < o2.getKilled())	{ //player 1 killed more
 				return 1;

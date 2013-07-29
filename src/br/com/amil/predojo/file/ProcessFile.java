@@ -6,12 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import javax.sound.midi.MidiDevice.Info;
-
 import br.com.amil.predojo.Match;
+import br.com.amil.predojo.ranking.RankingHandler;
+import br.com.amil.predojo.ranking.RankingStatistics;
 
 public class ProcessFile {
 	
@@ -34,17 +33,26 @@ public class ProcessFile {
 		return stream;
 	}
 	
-	public List<LogInformation> processLogFile() {
+	public List<PlayerLogInformation> processLogFile() {
 		
-		List<LogInformation> result = new ArrayList<LogInformation>();
+		List<PlayerLogInformation> result = readFile();
+
+		RankingHandler handler = RankingHandler.getInstance();
 		
-		readFile(result);
+		for (PlayerLogInformation playerLogInfo : result) {
+			handler.updateRanking(playerLogInfo.getKiller(), playerLogInfo.getDead(), playerLogInfo.getKiller().getWeapon());
+		}
 		
+		for (RankingStatistics stat : handler.getRanking()) {
+			System.out.println(stat);
+		}
 		return result;
 	}
 	
 	
-	private void readFile(List<LogInformation> result) {
+	private List<PlayerLogInformation> readFile() {
+		
+		List<PlayerLogInformation> result = new ArrayList<PlayerLogInformation>();
 		
 		InputStreamReader reader = new InputStreamReader(stream);
 		
@@ -61,18 +69,20 @@ public class ProcessFile {
 			e.printStackTrace();
 		}
 		
-		String[] splitted = builder.toString().split("\r\n");
+		String[] splitted = builder.toString().split("\r\n"); //Log lines separated.
 		
 		createLogInformationList(splitted, result);
 		
+		return result;
+		
 	}
 
-	private List<LogInformation> createLogInformationList(String[] splitted, List<LogInformation> result) {
+	private List<LogInformation> createLogInformationList(String[] splitted, List<PlayerLogInformation> result) {
 		if(splitted.length < 2) {
 			return null; //there isn't match finished
 		}
 		
-		processMatchLogInformation(result, splitted[0], splitted[splitted.length-1]);
+		processMatchLogInformation(splitted[0], splitted[splitted.length-1]);
 		
 		for (int i = 1; i < splitted.length -1; i++) {
 			processPlayerLogInformation(result, splitted[i]);
@@ -83,11 +93,11 @@ public class ProcessFile {
 		
 	}
 
-	private void processPlayerLogInformation(List<LogInformation> result, String log) {
+	private void processPlayerLogInformation(List<PlayerLogInformation> result, String log) {
 		result.add(new PlayerLogInformation(match, log));
 	}
 
-	private void processMatchLogInformation(List<LogInformation> result, String... matchesLogInformation) {
+	private void processMatchLogInformation(String... matchesLogInformation) {
 		MatchLogInformation initMatch = new MatchLogInformation(matchesLogInformation[0]);
 		MatchLogInformation endMatch = new MatchLogInformation(matchesLogInformation[1]);
 		
