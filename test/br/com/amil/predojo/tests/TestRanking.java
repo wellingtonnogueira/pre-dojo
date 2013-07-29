@@ -1,6 +1,7 @@
 package br.com.amil.predojo.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,7 +17,7 @@ import br.com.amil.predojo.Player;
 import br.com.amil.predojo.exception.PreDojoException;
 import br.com.amil.predojo.ranking.RankingHandler;
 import br.com.amil.predojo.ranking.RankingStatistics;
-import br.com.amil.predojo.weapon.WeaponType;
+import br.com.amil.predojo.weapon.Weapon;
 
 /**
  * @author wellington.nogueira@gmail.com
@@ -61,7 +62,7 @@ public class TestRanking {
 		RankingStatistics nickStatistics = new RankingStatistics(players[1]);
 		
 		romanStatistics.increaseKill();
-		romanStatistics.setUsedWeapon(WeaponType.M16);
+		romanStatistics.setUsedWeapon(new Weapon("M16"));
 		nickStatistics.increaseDead();
 		
 		nickStatistics.increaseDead();
@@ -78,23 +79,23 @@ public class TestRanking {
 		Player world = players[2];
 		
 		try {
-			roman.setWeapon(WeaponType.M16);
+			roman.setWeapon(new Weapon("M16"));
 		} catch (PreDojoException e) {
 			System.out.println(e.getMessage());
 		}
 		try {
-			nick.setWeapon(WeaponType.knife);
+			nick.setWeapon(new Weapon("knife"));
 		} catch (PreDojoException e) {
 			System.out.println(e.getMessage());
 		}
 		try {
-			world.setWeapon(WeaponType.drown);
+			world.setWeapon(new Weapon("drown"));
 		} catch (PreDojoException e) {
 			System.out.println(e.getMessage());
 		}
 		
-		roman.getWeapon().useAgainst(nick);
-		world.getWeapon().useAgainst(nick);
+//		roman.getWeapon().useAgainst(nick);
+//		world.getWeapon().useAgainst(nick);
 		
 		Collection<RankingStatistics> ranking = rankingHandler.getRanking();
 		
@@ -116,11 +117,11 @@ public class TestRanking {
 		RankingStatistics nickStatistics = new RankingStatistics(players[1]);
 		
 		romanStatistics.increaseKill();
-		romanStatistics.setUsedWeapon(WeaponType.AK47);
+		romanStatistics.setUsedWeapon(new Weapon("AK47"));
 		nickStatistics.increaseDead();
 		
 		nickStatistics.increaseKill();
-		nickStatistics.setUsedWeapon(WeaponType.knife);
+		nickStatistics.setUsedWeapon(new Weapon("knife"));
 		romanStatistics.increaseDead();
 		
 		romanStatistics.increaseDead();
@@ -137,24 +138,24 @@ public class TestRanking {
 		Player world = players[2];
 		
 		try {
-			roman.setWeapon(WeaponType.AK47);
+			roman.setWeapon(new Weapon("AK47"));
 		} catch (PreDojoException e) {
 			System.out.println(e.getMessage());
 		}
 		try {
-			nick.setWeapon(WeaponType.knife);
+			nick.setWeapon(new Weapon("knife"));
 		} catch (PreDojoException e) {
 			System.out.println(e.getMessage());
 		}
 		try {
-			world.setWeapon(WeaponType.drown);
+			world.setWeapon(new Weapon("drown"));
 		} catch (PreDojoException e) {
 			System.out.println(e.getMessage());
 		}
 		
-		roman.getWeapon().useAgainst(nick);
-		nick.getWeapon().useAgainst(roman);
-		world.getWeapon().useAgainst(roman);
+//		roman.getWeapon().useAgainst(nick);
+//		nick.getWeapon().useAgainst(roman);
+//		world.getWeapon().useAgainst(roman);
 		
 		Collection<RankingStatistics> ranking = rankingHandler.getRanking();
 		
@@ -173,12 +174,12 @@ public class TestRanking {
 		Player nick = players[1];
 		
 		try {
-			roman.setWeapon(WeaponType.glock);
+			roman.setWeapon(new Weapon("glock"));
 		} catch (PreDojoException e) {
 			//Nothing to do. Certainly the weapon will be equiped by Roman
 		}
 		try {
-			nick.setWeapon(WeaponType.glock);
+			nick.setWeapon(new Weapon("glock"));
 		} catch (PreDojoException e) {
 			System.out.println(e.getMessage());
 		}

@@ -1,8 +1,8 @@
 package br.com.amil.predojo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Classe que representa a rodada.
@@ -10,32 +10,45 @@ import java.util.List;
  * @author wellington.nogueira@gmail.com
  *
  */
-public class Match implements Runnable {
+public class Match {
 	
-	private List<Player> playersList = new ArrayList<Player>();
 	private long matchId;
+	private Date start;
+	private Date end;
+	private Set<Player> playersList = new HashSet<Player>();
 	
-	public Match(Player... players) {
-		this.playersList.addAll(Arrays.asList(players));
+	public Match(long matchId, Date start, Date end) {
+		this.setMatchId(matchId);
+		this.start = start;
+		this.end = end;
 	}
 	
-	public void start() {
-		long id = System.currentTimeMillis() % 10000000;
-		this.matchId = id;
-		System.out.println("New match " + id + " has started");
-		
-		run();
+	public void addPlayer(Player player) {
+		this.playersList.add(player);
 	}
 	
-	@Override
-	public void run() {
-		
-		//Run the match
-		
+	public Date getStart() {
+		return start;
 	}
-	
-	public void end() {
-		System.out.println("Match " + this.matchId + " has ended");
+
+	public void setStart(Date start) {
+		this.start = start;
+	}
+
+	public Date getEnd() {
+		return end;
+	}
+
+	public void setEnd(Date end) {
+		this.end = end;
+	}
+
+	public long getMatchId() {
+		return matchId;
+	}
+
+	public void setMatchId(long matchId) {
+		this.matchId = matchId;
 	}
 
 }

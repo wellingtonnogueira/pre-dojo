@@ -8,23 +8,41 @@ import br.com.amil.predojo.Player;
  * @author wellington.nogueira@gmail.com
  *
  */
-public interface Weapon {
+public class Weapon {
+	
+	private String weaponName;
+	private Player user;
+
+	public Weapon(String weaponName) {
+		this.setWeaponName(weaponName);
+	}
 	
 	/**
 	 * Define quem é a personagem que está utilizando esta arma
 	 * @param user
 	 */
-	void setPlayer(Player user);
+	public void setPlayer(Player user) {
+		this.user = user;
+	}
 	
 	/**
 	 * @return Retorna a personagem utilizando a arma
 	 */
-	Player getPlayer();
+	public Player getPlayer() {
+		return this.user;
+	}
 	
-	/**
-	 * Determina contra quem esta arma é utilizada
-	 * @param target
-	 */
-	void useAgainst(Player target);
+	public String getWeaponName() {
+		return weaponName;
+	}
+
+	public void setWeaponName(String weaponName) {
+		this.weaponName = weaponName;
+	}
+	
+	@Override
+	public String toString() {
+		return getWeaponName();
+	}
 
 }
