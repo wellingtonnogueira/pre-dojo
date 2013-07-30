@@ -6,7 +6,7 @@ import java.util.Set;
 
 import br.com.amil.predojo.Award;
 import br.com.amil.predojo.Player;
-import br.com.amil.predojo.weapon.Weapon;
+import br.com.amil.predojo.Weapon;
 
 /**
  * Classe que armazena as estatísticas de ranking de cada personagem

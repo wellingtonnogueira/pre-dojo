@@ -10,8 +10,8 @@ import java.util.Map;
 import br.com.amil.predojo.Award;
 import br.com.amil.predojo.Match;
 import br.com.amil.predojo.Player;
+import br.com.amil.predojo.Weapon;
 import br.com.amil.predojo.file.PlayerLogInformation;
-import br.com.amil.predojo.weapon.Weapon;
 
 /**
  * Classe que controla o Ranking geral.

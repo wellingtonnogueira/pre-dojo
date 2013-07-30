@@ -1,9 +1,4 @@
-Apesar de ter sido criado a classe Match, não foi implementada por não ser necessidade nesta fase.
-Criado um enum para os tipos de armas. Defini um universo finito de armas e existirá apenas uma de cada.
-Considerei que os jogadores podem ressucitar (Nick morre duas vezes no log). Porém não foi implementado nesta fase.
+Tratei apenas o Award para vencedor sem mortes. Não adicionei os demais Awards.
+O sistema desenvolvido visa apenas o backend permitindo liberdade para implementação do front-end.
 
-As armas são observadas pelo Ranking. Assim, todo evento que utiliza uma arma notifica o ranking que a mesma foi utilizada, quem utilizou e quem foi o alvo.
-Armas utilizadas por personagens não ranqueáveis (como <WORLD>) não informam na notificação ao ranking que foi ele quem assassinou.
-O notificador do ranking foi criado no construtor das armas (WeaponType).
-
-Nos testes (testRomanKillsNick e testRomanKillsNickAndNickKillsRoman), criei uma lista que deverá ser similar à que será montada pelo RankingHandler para, no fim, comparar ambas.
+O sistema está dividido em duas partes: Controle do Ranking e Parser do Arquivo onde o Controle de Ranking obtem as informações geradas pelo parser e cria o ranking em forma de java.util.List.

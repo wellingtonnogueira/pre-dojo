@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import br.com.amil.predojo.exception.PreDojoException;
-import br.com.amil.predojo.weapon.Weapon;
 
 /**
  * Classe que representa o jogador/personagem

@@ -10,11 +10,11 @@ import java.util.List;
 import org.junit.Test;
 
 import br.com.amil.predojo.Player;
-import br.com.amil.predojo.file.PlayerLogInformation;
+import br.com.amil.predojo.Weapon;
 import br.com.amil.predojo.file.LogParser;
+import br.com.amil.predojo.file.PlayerLogInformation;
 import br.com.amil.predojo.ranking.RankingHandler;
 import br.com.amil.predojo.ranking.RankingStatistics;
-import br.com.amil.predojo.weapon.Weapon;
 
 public class TestLogParser {
 	

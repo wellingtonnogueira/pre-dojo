@@ -2,8 +2,8 @@ package br.com.amil.predojo.file;
 
 import br.com.amil.predojo.Match;
 import br.com.amil.predojo.Player;
+import br.com.amil.predojo.Weapon;
 import br.com.amil.predojo.exception.PreDojoException;
-import br.com.amil.predojo.weapon.Weapon;
 
 public class PlayerLogInformation extends MatchLogInformation {
 	
