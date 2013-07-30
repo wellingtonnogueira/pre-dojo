@@ -1,5 +1,8 @@
 package br.com.amil.predojo;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 import br.com.amil.predojo.exception.PreDojoException;
 import br.com.amil.predojo.weapon.Weapon;
 
@@ -20,6 +23,8 @@ public class Player {
 	/** Define se a personagem é ranqueável */
 	private boolean rankable;
 	
+	private Set<Award> awards = new TreeSet<Award>();
+	
 	public Player(String name) {
 		this(name, true);
 	}
@@ -32,14 +37,17 @@ public class Player {
 	public Weapon getWeapon() {
 		return weapon;
 	}
+	
+	public void addAward(Award award) {
+		getAwards().add(award);
+	}
+	
+	public Set<Award> getAwards() {
+		return awards;
+	}
 
 	public void setWeapon(Weapon weapon) throws PreDojoException {
 		
-		if(weapon != null && weapon.getPlayer() != null) {
-			throw new PreDojoException(
-					"Weapon is already used by " + weapon.getPlayer().getName() + "." +
-					"The weapon was not equiped by the player");
-		}
 		if(this.weapon != null) {
 			this.weapon.setPlayer(null);
 		}
@@ -82,7 +90,7 @@ public class Player {
 	
 	@Override
 	public String toString() {
-		return "Player [name=" + name + ", weapon=" + weapon + "]";
+		return name;
 	}
 	
 

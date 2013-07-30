@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import br.com.amil.predojo.ranking.RankingHandler;
+
 /**
  * Classe que representa a rodada.
  * 

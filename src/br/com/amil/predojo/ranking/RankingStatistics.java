@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import br.com.amil.predojo.Award;
 import br.com.amil.predojo.Player;
 import br.com.amil.predojo.weapon.Weapon;
 
@@ -124,7 +125,19 @@ public class RankingStatistics {
 				", killed=" + killed + 
 				", dead=" + dead 
 				+ (getMostUsedWeapon() != null ? ", most used weapon=" + getMostUsedWeapon()  : "") + 
+				getAwards() +
 				"]";
+	}
+
+	private String getAwards() {
+		StringBuilder b = new StringBuilder();
+		b.append(" { Awards = ");
+		for (Award award : getPlayer().getAwards()) {
+			b.append(award);
+			b.append(" ");
+		}
+		b.append("}");
+		return b.toString();
 	}
 
 }

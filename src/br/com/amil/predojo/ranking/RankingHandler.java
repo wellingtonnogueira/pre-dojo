@@ -7,7 +7,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.amil.predojo.Award;
+import br.com.amil.predojo.Match;
 import br.com.amil.predojo.Player;
+import br.com.amil.predojo.file.PlayerLogInformation;
 import br.com.amil.predojo.weapon.Weapon;
 
 /**
@@ -20,21 +23,27 @@ import br.com.amil.predojo.weapon.Weapon;
 public class RankingHandler {
 	
 	/** Instancia de Ranking */
-	private static RankingHandler instance = new RankingHandler();
+	private static Map<Match, RankingHandler> matchRanking = new HashMap<Match, RankingHandler>();
 
 	/** Lista de Ranking */
 	private Map<Player, RankingStatistics> ranking;
 	
-	/**
-	 * 
-	 * @return Retorna controlador de Ranking
-	 */
-	public static RankingHandler getInstance() {
-		return instance;
+	
+	public static RankingHandler getRankingHandler(Match match) {
+		RankingHandler rankingHandler = matchRanking.get(match);
+		if(rankingHandler == null) {
+			matchRanking.put(match, rankingHandler = new RankingHandler());
+		}
+		return rankingHandler;
 	}
 	
 	private RankingHandler() {
 		ranking = new HashMap<Player, RankingStatistics>();
+	}
+	
+	public void updateRanking(PlayerLogInformation playerLogInfo) {
+		updateRanking(playerLogInfo.getKiller(), playerLogInfo.getDead(), playerLogInfo.getKiller().getWeapon());
+		//TODO 
 	}
 	
 	/**
@@ -73,12 +82,9 @@ public class RankingHandler {
 		ArrayList<RankingStatistics> sortedRanking = new ArrayList<RankingStatistics>(ranking.values());
 		Collections.sort(sortedRanking, new RankingComparator<RankingStatistics>());
 		
+		applyNoDeadsAward(sortedRanking);
+		
 		return sortedRanking;
-	}
-	
-	/** Limpa o ranking atual */
-	public void clearRanking() {
-		ranking.clear();
 	}
 	
 	/**
@@ -105,6 +111,15 @@ public class RankingHandler {
 					return -1;
 				}
 				return 0; //impossible determine who was better...
+			}
+		}
+	}
+	
+	private void applyNoDeadsAward(Collection<RankingStatistics> ranking) {
+		if(!ranking.isEmpty()) {
+			RankingStatistics statistics = (RankingStatistics)ranking.toArray()[0];
+			if(statistics.getDead() == 0) {
+				statistics.getPlayer().addAward(Award.noDeads);
 			}
 		}
 		
